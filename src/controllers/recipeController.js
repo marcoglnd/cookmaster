@@ -47,9 +47,21 @@ const updateRecipe = async (req, res) => {
   res.status(200).json(response);
 };
 
+const deleteRecipe = async (req, res) => {
+  const { id } = req.params;
+  const response = await recipeService.deleteRecipe(id);
+
+  if (!response) {
+    return res.status(404).json({ message: 'recipe not found' });
+  }
+
+  res.status(204).send();
+};
+
 module.exports = {
   createRecipe,
   getRecipes,
   getRecipeById,
   updateRecipe,
+  deleteRecipe,
 };

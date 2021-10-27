@@ -28,4 +28,6 @@ app.get('/recipes/:id', recipeController.getRecipeById);
 
 app.put('/recipes/:id', validateJWT, recipeController.updateRecipe);
 
+app.delete('/recipes/:id', validateJWT, recipeController.deleteRecipe);
+
 module.exports = app;
