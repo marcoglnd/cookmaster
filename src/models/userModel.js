@@ -20,7 +20,17 @@ const findEmail = async ({ email }) => {
   return user;
 };
 
+const checkLoginCredentials = async ({ email, password }) => {
+  const userCollection = await mongoConnection.connection()
+    .then((db) => db.collection('users'));
+  
+  const user = await userCollection.findOne({ email, password });
+
+  return user;
+};
+
 module.exports = {
   createUser,
   findEmail,
+  checkLoginCredentials,
 };

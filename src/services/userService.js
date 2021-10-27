@@ -30,14 +30,34 @@ const validations = async (name, email, password) => {
   return null;
 };
 
+const validateLogin = async (email, password) => {
+  if (!email || !password) {
+    return ({
+      message: 'All fields must be filled',
+    });
+  }
+  const user = await userModel.checkLoginCredentials({ email, password });
+  if (!user) {
+    return ({
+      message: 'Incorrect username or password',
+    });
+  }
+  return user;
+};
+
 const createUser = async (name, email, password) => {
   const error = await validations(name, email, password);
-  console.log(error);
   if (error) return error;
   const id = await userModel.createUser({ name, email, password });
   return id;
 };
 
+const login = async (email, password) => {
+  const response = await validateLogin(email, password);
+  return response;
+};
+
 module.exports = {
   createUser,
+  login,
 };

@@ -16,4 +16,6 @@ app.use('/images', express.static(path.join(__dirname, '..', 'uploads')));
 
 app.post('/users', userController.createUser);
 
+app.post('/login', userController.login);
+
 module.exports = app;
