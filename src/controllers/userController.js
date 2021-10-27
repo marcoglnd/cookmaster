@@ -33,7 +33,9 @@ const login = async (req, res) => {
     return res.status(401).json(response);
   }
 
-  const token = jwt.sign({ data: response }, secret, jwtConfig);
+  const { _id, email: userEmail, role } = response;
+
+  const token = jwt.sign({ _id, userEmail, role }, secret, jwtConfig);
   
   return res.status(200).json({ token });
 };

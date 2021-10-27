@@ -18,7 +18,7 @@ const validateEmail = (email) => {
 };
 
 const emailExists = async (email) => {
-  const foundEmail = await userModel.findEmail({ email });
+  const foundEmail = await userModel.findEmail(email);
   if (foundEmail) return ({ message: 'Email already registered' });
   return null;
 };
