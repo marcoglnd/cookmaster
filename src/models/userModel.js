@@ -1,4 +1,3 @@
-// const { ObjectId } = require('mongodb');
 const mongoConnection = require('./connection');
 
 const createUser = async ({ name, email, password }) => {
@@ -29,20 +28,8 @@ const checkLoginCredentials = async ({ email, password }) => {
   return user;
 };
 
-// const findUser = async (_id) => {
-//   const userCollection = await mongoConnection.connection()
-//     .then((db) => db.collection('users'));
-  
-//   const user = await userCollection.findOne({ _id });
-
-//   console.log(_id);
-
-//   return user;
-// };
-
 module.exports = {
   createUser,
   findEmail,
   checkLoginCredentials,
-  // findUser,
 };

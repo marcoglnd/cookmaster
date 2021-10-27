@@ -6,7 +6,7 @@ const secret = 'segredo';
 const validation = async (req, res, next) => {
   const token = req.headers.authorization;
   if (!token) {
-    return res.status(401).json({ error: 'jwt malformed' });
+    return res.status(401).json({ message: 'missing auth token' });
   }
 
   try {

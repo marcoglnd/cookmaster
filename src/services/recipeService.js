@@ -9,10 +9,10 @@ const validations = (name, ingredients, preparation) => {
   return null;
 };
 
-const createRecipe = async (name, ingredients, preparation, user) => {
+const createRecipe = async (name, ingredients, preparation, userId) => {
   const error = validations(name, ingredients, preparation);
   if (error) return error;
-  const id = await recipeModel.createRecipe({ name, ingredients, preparation, user });
+  const id = await recipeModel.createRecipe({ name, ingredients, preparation, userId });
   return id;
 };
 
@@ -26,8 +26,14 @@ const getRecipeById = async (id) => {
   return recipe;
 };
 
+const updateRecipe = async (id, name, ingredients, preparation) => {
+  const recipe = await recipeModel.updateRecipe(id, name, ingredients, preparation);
+  return recipe;
+};
+
 module.exports = { 
   createRecipe,
   getRecipes,
   getRecipeById,
+  updateRecipe,
 };
