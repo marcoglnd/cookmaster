@@ -31,6 +31,6 @@ app.put('/recipes/:id', validateJWT, recipeController.updateRecipe);
 
 app.delete('/recipes/:id', validateJWT, recipeController.deleteRecipe);
 
-app.post('/recipes/:id/image', validateJWT, upload.single('image'), recipeController.uploadImage);
+app.put('/recipes/:id/image', validateJWT, upload.single('image'), recipeController.uploadImage);
 
 module.exports = app;

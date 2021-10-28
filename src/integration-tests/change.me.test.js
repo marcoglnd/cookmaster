@@ -20,11 +20,11 @@ describe('POST /users', () => {
       before(async () => {
         const URLMock = await DBServer.getUri();
         const connectionMock = await MongoClient.connect(URLMock,
-            { useNewUrlParser: true, useUnifiedTopology: true }
+          { useNewUrlParser: true, useUnifiedTopology: true }
         );
   
         sinon.stub(MongoClient, 'connect')
-            .resolves(connectionMock);
+          .resolves(connectionMock);
         
         response = await chai.request(server)
           .post('/users')
