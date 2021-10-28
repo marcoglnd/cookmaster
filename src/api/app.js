@@ -4,6 +4,7 @@ const path = require('path');
 const userController = require('../controllers/userController');
 const recipeController = require('../controllers/recipeController');
 const validateJWT = require('./auth/validateJWT');
+const upload = require('../middlewares/upload');
 
 const app = express();
 app.use(bodyParser.json());
@@ -29,5 +30,7 @@ app.get('/recipes/:id', recipeController.getRecipeById);
 app.put('/recipes/:id', validateJWT, recipeController.updateRecipe);
 
 app.delete('/recipes/:id', validateJWT, recipeController.deleteRecipe);
+
+app.post('/recipes/:id/image', validateJWT, upload.single('image'), recipeController.uploadImage);
 
 module.exports = app;

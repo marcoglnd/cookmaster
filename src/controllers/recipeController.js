@@ -58,10 +58,27 @@ const deleteRecipe = async (req, res) => {
   res.status(204).send();
 };
 
+const uploadImage = async (req, res) => {
+  const { id } = req.params;
+  const { file } = req;
+  // if (req.fileValidationError) {
+  //   return res.status(403).json({ error: { message: 'Extension must be `jpeg`' } });
+  // }
+
+  const response = await recipeService.uploadImage(id, file);
+
+  // if (!response) {
+  //   return res.status(404).json({ message: 'recipe not found' });
+  // }
+
+  res.status(200).json(response);
+};
+
 module.exports = {
   createRecipe,
   getRecipes,
   getRecipeById,
   updateRecipe,
   deleteRecipe,
+  uploadImage,
 };
